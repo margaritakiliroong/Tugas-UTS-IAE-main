@@ -149,6 +149,30 @@ Login:
 iae / iae
 ```
 
+## Food Service Stock API
+
+Food Service menyediakan endpoint stok khusus agar quantity tidak bisa menjadi negatif saat order diproses.
+
+```powershell
+curl.exe "http://localhost:8002/api/foods/1/stock?quantity=2"
+```
+
+Update stok:
+
+```powershell
+curl.exe -X PATCH http://localhost:8002/api/foods/1/stock `
+  -H "Content-Type: application/json" `
+  -d "{\"operation\":\"decrease\",\"quantity\":2}"
+```
+
+`operation` yang tersedia:
+
+```text
+increase
+decrease
+set
+```
+
 ## Dokumentasi Tambahan
 
 - `HASURA_RABBITMQ_DOCKER.md` berisi panduan teknis Docker, Hasura, PostgreSQL, dan RabbitMQ.
